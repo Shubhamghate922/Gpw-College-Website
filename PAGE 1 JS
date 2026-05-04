@@ -1,0 +1,111 @@
+/* =========================================
+   GOVERNMENT POLYTECHNIC WASHIM — script.js
+   ========================================= */
+
+
+/* ── Sticky navbar shadow on scroll ── */
+(function () {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 10) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }, { passive: true });
+})();
+
+
+/* ── Sliding Underline Navigation (Single Element) ── */
+(function () {
+  const navItems = document.querySelectorAll('.nav-item');
+  const navList = document.querySelector('.nav-list');
+  const underline = document.querySelector('.nav-underline');
+
+  if (!navItems.length || !navList || !underline) return;
+
+  function moveUnderline(el) {
+    const rect = el.getBoundingClientRect();
+    const parentRect = navList.getBoundingClientRect();
+
+    underline.style.left = (rect.left - parentRect.left + 12) + "px";
+    underline.style.width = (rect.width - 24) + "px";
+  }
+
+  // Set initial position after layout loads
+  window.addEventListener('load', function () {
+    const activeItem = document.querySelector('.nav-item.active');
+    if (activeItem) moveUnderline(activeItem);
+  });
+
+  // Click event
+  navItems.forEach(item => {
+    item.addEventListener('click', function () {
+      navItems.forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+      moveUnderline(this);
+    });
+  });
+
+  // Hover animation
+  navItems.forEach(item => {
+    item.addEventListener('mouseenter', function () {
+      moveUnderline(this);
+    });
+  });
+
+  // Reset to active item
+  navList.addEventListener('mouseleave', function () {
+    const active = document.querySelector('.nav-item.active');
+    if (active) moveUnderline(active);
+  });
+
+  // Fix on window resize
+  window.addEventListener('resize', function () {
+    const active = document.querySelector('.nav-item.active');
+    if (active) moveUnderline(active);
+  });
+
+})();
+
+
+/* ── Navbar dropdown accessibility ── */
+(function () {
+  const dropItems = document.querySelectorAll('.nav-item.has-dropdown');
+
+  dropItems.forEach(function (item) {
+    const link = item.querySelector('.nav-link');
+    if (!link) return;
+
+    link.setAttribute('role', 'button');
+    link.setAttribute('aria-haspopup', 'true');
+    link.setAttribute('aria-expanded', 'false');
+
+    item.addEventListener('mouseenter', function () {
+      link.setAttribute('aria-expanded', 'true');
+    });
+
+    item.addEventListener('mouseleave', function () {
+      link.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+
+
+/* ── Simple search button interaction ── */
+(function () {
+  const searchBtn = document.getElementById('searchBtn');
+  if (!searchBtn) return;
+
+  searchBtn.addEventListener('click', function () {
+    const q = prompt('Search Government Polytechnic Washim:');
+    if (q && q.trim()) {
+      window.open(
+        'https://gpwashim.edu.in/?s=' + encodeURIComponent(q.trim()),
+        '_blank'
+      );
+    }
+  });
+})();
