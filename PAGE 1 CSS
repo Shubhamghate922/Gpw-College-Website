@@ -1,0 +1,473 @@
+/* =========================================
+   GOVERNMENT POLYTECHNIC WASHIM — style.css
+   ========================================= */
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --purple:       #4c0097;
+  --purple-light: #f6edff;
+  --purple-mid:   #6a00cc;
+  --purple-dark:  #380070;
+  --purple-hero:  rgba(76, 0, 151, 0.82);
+  --white:        #ffffff;
+  --gray-text:    #444;
+  --top-bg:       #f0e6ff;
+  --font-en:      'Poppins', sans-serif;
+  --font-mr:      'Khand', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-en);
+  color: var(--gray-text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+button { cursor: pointer; border: none; background: none; font-family: var(--font-en); }
+
+/* =========================================
+   TOP BAR
+   ========================================= */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--purple-light);
+  padding: 8px 28px;
+  font-size: 13.2px;
+  font-weight: 500;
+  color: #333;
+  border-bottom: 1px solid #e0cdf5;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.top-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.top-contact-item:hover { color: var(--purple); }
+
+.top-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.phone-icon {
+  background: var(--purple);
+  color: var(--white);
+}
+
+.mail-icon {
+  background: transparent;
+  color: var(--purple);
+  border: 1.5px solid var(--purple);
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.lang-btn:hover { background: #e5d4f8; }
+.lang-btn i { color: var(--purple); font-size: 14px; }
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--purple);
+  color: var(--white);
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.25s, transform 0.2s;
+}
+
+.contact-btn:hover {
+  background: var(--purple-dark);
+  transform: translateY(-1px);
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  font-size: 11px;
+}
+
+/* =========================================
+   MAIN HEADER
+   ========================================= */
+.main-header {
+  display: flex;
+  align-items: center;
+  padding: 14px 28px;
+  background: var(--white);
+  position: relative;
+  gap: 14px;
+}
+
+.header-logo {
+  flex-shrink: 0;
+}
+
+.college-logo {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+}
+
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.marathi-title {
+  font-family: var(--font-mr);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--purple);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.college-name {
+  font-family: var(--font-en);
+  font-size: 32px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.15;
+  margin: 4px 0;
+  letter-spacing: -0.3px;
+}
+
+.college-codes {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.college-codes .divider {
+  color: #999;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.header-right {
+  flex-shrink: 0;
+}
+
+.amrit-logo {
+  width: 130px;
+  object-fit: contain;
+}
+
+.header-search {
+  flex-shrink: 0;
+}
+
+.search-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 14px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.search-btn:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+/* =========================================
+   NAVBAR (UPDATED WITH SMOOTH ANIMATION)
+   ========================================= */
+
+.navbar {
+  background: var(--purple);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 3px 16px rgba(76,0,151,0.35);
+  transition: box-shadow 0.3s;
+}
+
+.nav-list {
+  display: flex;
+  align-items: stretch;
+  padding: 0 20px;
+}
+
+/* ── Nav Item ── */
+.nav-item {
+  position: relative;
+  transition: transform 0.25s ease;
+}
+
+.nav-item:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Nav Link ── */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+  position: relative;
+
+  transition: 
+    color 0.3s ease,
+    background 0.25s ease,
+    transform 0.15s ease;
+}
+
+/* Hover */
+.nav-link:hover {
+  background: rgba(255,255,255,0.08);
+  color: #ffffff;
+}
+
+/* Click press */
+.nav-link:active {
+  transform: scale(0.96);
+}
+
+/* Active state */
+.nav-item.active .nav-link {
+  color: #ffffff;
+  background: rgba(255,255,255,0.12);
+  font-weight: 600;
+  transition-delay: 0.05s;
+}
+
+/* Sliding underline */
+.nav-underline {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 2px;
+
+  left: 0;
+  width: 0;
+
+  transition: 
+    left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Make nav relative */
+.nav-list {
+  position: relative;
+}
+
+
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+
+  background: url("https://i.postimg.cc/qRKtSq8M/55dd234c-7893-4806-b26a-155f29a8982d.png") no-repeat center/cover;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(40, 0, 90, 0.95) 0%,
+    rgba(60, 0, 120, 0.9) 25%,
+    rgba(76, 0, 151, 0.75) 50%,
+    rgba(76, 0, 151, 0.4) 70%,
+    rgba(76, 0, 151, 0.08) 85%,
+    rgba(76, 0, 151, 0) 100%
+  );
+
+  backdrop-filter: blur(1px);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;   /* keeps text above gradient */
+  max-width: 440px;
+}
+.hero-title {
+  font-size: 42px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 16px;
+
+  /* 🔥 Important */
+  text-shadow: 0 3px 12px rgba(0,0,0,0.5);
+}
+
+.hero-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.95);
+  line-height: 1.7;
+  margin-bottom: 28px;
+
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.welcome-text {
+  color: rgba(255,255,255,0.9);
+}
+.hero-desc {
+  text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+}
+/* ── Hero Buttons ── */
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-en);
+  transition: 0.2s;
+}
+
+/* PRIMARY BUTTON */
+.btn-primary {
+  background: #ffffff;
+  color: #4c0097;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+.btn-primary:hover {
+  background: #f3e8ff;
+}
+
+/* OUTLINE BUTTON */
+.btn-outline {
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+.btn-outline:hover {
+  background: rgba(255,255,255,0.15);
+}
+.hero {
+  padding-left: 80px;
+}
+/*=====================================
+   SCROLLED NAVBAR STATE
+   ========================================= */
+.navbar.scrolled {
+  box-shadow: 0 4px 24px rgba(76,0,151,0.45);
+}
+
+/* =========================================
+   RESPONSIVE (basic)
+   ========================================= */
+@media (max-width: 900px) {
+  .college-name { font-size: 22px; }
+  .hero-left { width: 55%; padding: 40px 40px 40px 24px; }
+  .hero-title { font-size: 28px; }
+  .college-logo { width: 80px; height: 80px; }
+  .amrit-logo { width: 100px; }
+}
+
+@media (max-width: 700px) {
+  .top-bar {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 16px;
+    align-items: flex-start;
+  }
+  .main-header {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero { flex-direction: column; }
+  .hero-left {
+    width: 100%;
+    clip-path: none;
+    padding: 40px 24px;
+  }
+  .hero-right { min-height: 240px; }
+  .nav-list {
+    flex-wrap: wrap;
+    padding: 0 8px;
+  }
+  .nav-link { padding: 12px 10px; font-size: 13px; }
+}
