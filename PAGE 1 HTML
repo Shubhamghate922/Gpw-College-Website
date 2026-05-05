@@ -4,14 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Government Polytechnic Washim</title>
-
   <link rel="stylesheet" href="style.css" />
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Khand:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
-
 <body>
 
   <!-- ===== TOP BAR ===== -->
@@ -23,7 +19,6 @@
         </span>
         +91-7252-232252
       </a>
-
       <a href="mailto:office.gpwashim@dtemaharashtra.gov.in" class="top-contact-item">
         <span class="top-icon mail-icon">
           <i class="fas fa-envelope"></i>
@@ -31,13 +26,11 @@
         office.gpwashim@dtemaharashtra.gov.in
       </a>
     </div>
-
     <div class="top-bar-right">
       <button class="lang-btn">
         <i class="fas fa-globe"></i>
         English
       </button>
-
       <a href="https://gpwashim.edu.in/Contactus/" target="_blank" class="contact-btn">
         <span class="contact-icon">
           <i class="fas fa-headset"></i>
@@ -49,126 +42,108 @@
 
   <!-- ===== MAIN HEADER ===== -->
   <header class="main-header">
-
     <div class="header-logo">
-      <img src="https://i.postimg.cc/pd68334f/file-000000004d3871faa2ebc250dfa27be8.png"
-           alt="GPW Logo"
-           class="college-logo"/>
+      <img src="https://i.postimg.cc/pd68334f/file-000000004d3871faa2ebc250dfa27be8.png" alt="GPW Logo" class="college-logo"/>
     </div>
-
     <div class="header-center">
       <div class="marathi-title">शासकीय तंत्रनिकेतन वाशिम</div>
-
       <h1 class="college-name">Government Polytechnic Washim</h1>
-
       <div class="college-codes">
         <span>DTE CODE: 1010</span>
         <span class="divider">|</span>
         <span>MSBET CODE: 0031</span>
       </div>
     </div>
-
     <div class="header-right">
-      <img src="https://i.postimg.cc/VkXVfWmC/Azadi-Ka-Amrit-Mahotsav-Logo.png"
-           alt="Azadi Ka Amrit Mahotsav"
-           class="amrit-logo"/>
+      <img src="https://i.postimg.cc/VkXVfWmC/Azadi-Ka-Amrit-Mahotsav-Logo.png" alt="Azadi Ka Amrit Mahotsav" class="amrit-logo"/>
     </div>
-
-    <!-- ❌ SEARCH REMOVED -->
-
+    
   </header>
 
   <!-- ===== NAVBAR ===== -->
-  <nav class="navbar" id="navbar">
-    <ul class="nav-list">
+<nav class="navbar" id="navbar">
+  <ul class="nav-list">
 
-      <li class="nav-item active">
-        <a href="#" class="nav-link">HOME</a>
-        <span class="nav-underline"></span>
-      </li>
+    <!-- HOME -->
+    <li class="nav-item active">
+      <a href="#" class="nav-link" id="homeLink">HOME</a>
+      <span class="nav-underline"></span>
+    </li>
 
-      <li class="nav-item">
-        <a href="#" class="nav-link">ABOUT US</a>
-        <span class="nav-underline"></span>
-      </li>
+    <!-- ABOUT US (Dropdown) -->
+    <li class="nav-item has-dropdown">
+      <a href="#" class="nav-link">
+        ABOUT US <i class="fas fa-chevron-down nav-arrow"></i>
+      </a>
 
-      <li class="nav-item">
-        <a href="#" class="nav-link">PROGRAMME OFFERED</a>
-        <span class="nav-underline"></span>
-      </li>
+      <div class="dropdown-menu">
+        <div class="dropdown-inner">
+          <a href="#">Principal Desk</a>
+          <a href="#">About Institute</a>
+          <a href="#">Institute Map</a>
+          <a href="#">Board of Governors</a>
+          <a href="#">Office</a>
+        </div>
+      </div>
+    </li>
 
-      <li class="nav-item">
-        <a href="#" class="nav-link">DEPARTMENT</a>
-        <span class="nav-underline"></span>
-      </li>
+    <!-- DIRECT LINKS -->
+    <li class="nav-item">
+      <a href="https://gpwashim.edu.in/Admission/" class="nav-link">PROGRAMME OFFERED</a>
+    </li>
 
-      <li class="nav-item">
-        <a href="#" class="nav-link">ACTIVITIES</a>
-        <span class="nav-underline"></span>
-      </li>
+    <li class="nav-item">
+      <a href="https://gpwashim.edu.in/Gallery/" class="nav-link">GALLERY</a>
+    </li>
 
-      <li class="nav-item">
-        <a href="#" class="nav-link">GALLERY</a>
-        <span class="nav-underline"></span>
-      </li>
+    <li class="nav-item">
+      <a href="https://gpwashim.edu.in/TrainingPlacement/" class="nav-link">T & P</a>
+    </li>
 
-      <li class="nav-item">
-        <a href="#" class="nav-link">FACILITY</a>
-        <span class="nav-underline"></span>
-      </li>
+    <li class="nav-item">
+      <a href="https://gpwashim.edu.in/StudentSection/" class="nav-link">STUDENT SECTION</a>
+    </li>
 
-      <li class="nav-item">
-        <a href="#" class="nav-link">T&amp;P</a>
-        <span class="nav-underline"></span>
-      </li>
+    <li class="nav-item">
+      <a href="https://gpwashim.edu.in/Contactus/" class="nav-link">CONTACT</a>
+    </li>
 
-      <li class="nav-item">
-        <a href="#" class="nav-link">STUDENT SECTION</a>
-        <span class="nav-underline"></span>
-      </li>
-
-      <li class="nav-item">
-        <a href="#" class="nav-link">CONTACT</a>
-        <span class="nav-underline"></span>
-      </li>
-
-    </ul>
-  </nav>
+  </ul>
+</nav>
 
   <!-- ===== HERO SECTION ===== -->
-  <section class="hero">
-    <div class="hero-content">
+<section class="hero">
+  <div class="hero-content">
+    <p class="welcome-text">
+      <span>Welcome to</span>
+      <span class="welcome-line"></span>
+    </p>
 
-      <p class="welcome-text">
-        <span>Welcome to</span>
-        <span class="welcome-line"></span>
-      </p>
+    <h2 class="hero-title">
+      Government<br>Polytechnic Washim
+    </h2>
 
-      <h2 class="hero-title">
-        Government<br>Polytechnic Washim
-      </h2>
+    <p class="hero-desc">
+      Empowering students through quality technical education, skill development and innovation for a better tomorrow.
+    </p>
 
-      <p class="hero-desc">
-        Empowering students through quality technical education,
-        skill development and innovation for a better tomorrow.
-      </p>
+    <div class="hero-buttons">
+      <a href="#" class="btn btn-primary">
+        <i class="fas fa-graduation-cap"></i>
+        Apply Now
+      </a>
 
-      <div class="hero-buttons">
-        <a href="#" class="btn btn-primary">
-          <i class="fas fa-graduation-cap"></i>
-          Apply Now
-        </a>
-
-        <a href="#" class="btn btn-outline">
-          <i class="fas fa-file-alt"></i>
-          Explore Courses
-        </a>
-      </div>
-
+      <a href="#" class="btn btn-outline">
+        <i class="fas fa-file-alt"></i>
+        Explore Courses
+      </a>
+    </div>
+  </div>
+</section>
+     
     </div>
   </section>
 
   <script src="script.js"></script>
-
 </body>
 </html>
