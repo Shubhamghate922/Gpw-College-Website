@@ -1,4 +1,4 @@
-/* =========================================
+ /* =========================================
    GOVERNMENT POLYTECHNIC WASHIM — style.css
    ========================================= */
 
@@ -217,28 +217,11 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
   flex-shrink: 0;
 }
 
-.search-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #555;
-  font-size: 14px;
-  transition: border-color 0.2s, color 0.2s;
-}
 
-.search-btn:hover {
-  border-color: var(--purple);
-  color: var(--purple);
-}
 
 /* =========================================
-   NAVBAR (UPDATED WITH SMOOTH ANIMATION)
+   NAVBAR
    ========================================= */
-
 .navbar {
   background: var(--purple);
   position: sticky;
@@ -257,14 +240,8 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 /* ── Nav Item ── */
 .nav-item {
   position: relative;
-  transition: transform 0.25s ease;
 }
 
-.nav-item:hover {
-  transform: translateY(-2px);
-}
-
-/* ── Nav Link ── */
 .nav-link {
   display: flex;
   align-items: center;
@@ -272,56 +249,94 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
   padding: 16px 18px;
   font-size: 14px;
   font-weight: 500;
-  color: rgba(255,255,255,0.85);
+  color: var(--white);
   white-space: nowrap;
+  transition: background 0.2s;
   position: relative;
-
-  transition: 
-    color 0.3s ease,
-    background 0.25s ease,
-    transform 0.15s ease;
 }
 
-/* Hover */
 .nav-link:hover {
-  background: rgba(255,255,255,0.08);
-  color: #ffffff;
+  background: rgba(255,255,255,0.1);
 }
 
-/* Click press */
-.nav-link:active {
-  transform: scale(0.96);
-}
-
-/* Active state */
+/* ── Active underline animation ── */
 .nav-item.active .nav-link {
-  color: #ffffff;
-  background: rgba(255,255,255,0.12);
   font-weight: 600;
-  transition-delay: 0.05s;
 }
 
-/* Sliding underline */
 .nav-underline {
   position: absolute;
   bottom: 0;
-  height: 3px;
-  background: #ffffff;
-  border-radius: 2px;
-
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
-
-  transition: 
-    left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 3px;
+  background: var(--white);
+  border-radius: 2px 2px 0 0;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Make nav relative */
-.nav-list {
-  position: relative;
+.nav-item.active .nav-underline {
+  width: calc(100% - 24px);
 }
 
+/* Arrow icon */
+.nav-arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+}
+
+.nav-item.has-dropdown:hover .nav-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown ── */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--white);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 8px 32px rgba(76,0,151,0.18);
+  overflow: hidden;
+  /* Smooth open animation */
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity    0.28s ease;
+}
+
+.nav-item.open .dropdown-menu {
+  max-height: 320px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dropdown-inner {
+  padding: 18px 20px;
+}
+
+.dropdown-inner a {
+  display: block;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #444;
+  transition: 0.2s;
+}
+
+.dropdown-inner a:hover {
+  color: var(--purple);
+  transform: translateX(4px);
+}
+
+.dropdown-empty {
+  font-size: 13px;
+  color: #aaa;
+  font-style: italic;
+}
 
 
 /* =========================================
@@ -403,7 +418,45 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
   font-weight: 600;
   font-family: var(--font-en);
   transition: 0.2s;
+  
+  position: relative;
+  overflow: hidden;
 }
+
+/* ── LIGHT SWEEP ── */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  transform: skewX(-25deg);
+}
+
+/* Animate on hover */
+.btn:hover::before {
+  animation: shine 0.8s forwards;
+}
+
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
 
 /* PRIMARY BUTTON */
 .btn-primary {
@@ -425,6 +478,22 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 .btn-outline:hover {
   background: rgba(255,255,255,0.15);
 }
+
+/* ── GLOW EFFECT ── */
+.btn-primary:hover {
+  box-shadow:
+    0 0 10px rgba(255,255,255,0.6),
+    0 0 25px rgba(255,255,255,0.4),
+    0 0 40px rgba(255,255,255,0.3);
+}
+
+.btn-outline:hover {
+  box-shadow:
+    0 0 10px rgba(255,255,255,0.6),
+    0 0 25px rgba(255,255,255,0.4),
+    0 0 40px rgba(255,255,255,0.3);
+}
+
 .hero {
   padding-left: 80px;
 }
