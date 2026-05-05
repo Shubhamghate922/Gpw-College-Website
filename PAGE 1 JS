@@ -2,11 +2,9 @@
    GOVERNMENT POLYTECHNIC WASHIM — script.js
    ========================================= */
 
-
 /* ── Sticky navbar shadow on scroll ── */
 (function () {
   const navbar = document.getElementById('navbar');
-  if (!navbar) return;
 
   window.addEventListener('scroll', function () {
     if (window.scrollY > 10) {
@@ -17,95 +15,111 @@
   }, { passive: true });
 })();
 
+/* ── HOME CLICK → RELOAD PAGE ── */
+document.getElementById('homeLink').addEventListener('click', function (e) {
+  e.preventDefault();
+  location.reload();
+});
 
-/* ── Sliding Underline Navigation (Single Element) ── */
+
+/* ── ACTIVE NAV ITEM + UNDERLINE ── */
 (function () {
   const navItems = document.querySelectorAll('.nav-item');
-  const navList = document.querySelector('.nav-list');
-  const underline = document.querySelector('.nav-underline');
 
-  if (!navItems.length || !navList || !underline) return;
-
-  function moveUnderline(el) {
-    const rect = el.getBoundingClientRect();
-    const parentRect = navList.getBoundingClientRect();
-
-    underline.style.left = (rect.left - parentRect.left + 12) + "px";
-    underline.style.width = (rect.width - 24) + "px";
-  }
-
-  // Set initial position after layout loads
-  window.addEventListener('load', function () {
-    const activeItem = document.querySelector('.nav-item.active');
-    if (activeItem) moveUnderline(activeItem);
-  });
-
-  // Click event
-  navItems.forEach(item => {
-    item.addEventListener('click', function () {
-      navItems.forEach(i => i.classList.remove('active'));
-      this.classList.add('active');
-      moveUnderline(this);
-    });
-  });
-
-  // Hover animation
-  navItems.forEach(item => {
-    item.addEventListener('mouseenter', function () {
-      moveUnderline(this);
-    });
-  });
-
-  // Reset to active item
-  navList.addEventListener('mouseleave', function () {
-    const active = document.querySelector('.nav-item.active');
-    if (active) moveUnderline(active);
-  });
-
-  // Fix on window resize
-  window.addEventListener('resize', function () {
-    const active = document.querySelector('.nav-item.active');
-    if (active) moveUnderline(active);
-  });
-
-})();
-
-
-/* ── Navbar dropdown accessibility ── */
-(function () {
-  const dropItems = document.querySelectorAll('.nav-item.has-dropdown');
-
-  dropItems.forEach(function (item) {
+  navItems.forEach(function (item) {
     const link = item.querySelector('.nav-link');
-    if (!link) return;
 
-    link.setAttribute('role', 'button');
-    link.setAttribute('aria-haspopup', 'true');
-    link.setAttribute('aria-expanded', 'false');
+    link.addEventListener('click', function () {
 
-    item.addEventListener('mouseenter', function () {
-      link.setAttribute('aria-expanded', 'true');
-    });
+      // Remove active from all
+      navItems.forEach(i => {
+        i.classList.remove('active');
+        const ul = i.querySelector('.nav-underline');
+        if (ul) ul.style.width = '0';
+      });
 
-    item.addEventListener('mouseleave', function () {
-      link.setAttribute('aria-expanded', 'false');
+      // Set active
+      item.classList.add('active');
+
+      // Add underline if not exist
+      let underline = item.querySelector('.nav-underline');
+      if (!underline) {
+        underline = document.createElement('span');
+        underline.classList.add('nav-underline');
+        item.appendChild(underline);
+      }
+
+      // Animate
+      requestAnimationFrame(() => {
+        underline.style.width = 'calc(100% - 24px)';
+      });
     });
   });
+
 })();
 
-
-/* ── Simple search button interaction ── */
+/* ── DROPDOWN TOGGLE (ABOUT US) ── */
 (function () {
-  const searchBtn = document.getElementById('searchBtn');
-  if (!searchBtn) return;
+  const dropdownItem = document.querySelector('.nav-item.has-dropdown');
+  const link = dropdownItem.querySelector('.nav-link');
 
-  searchBtn.addEventListener('click', function () {
-    const q = prompt('Search Government Polytechnic Washim:');
-    if (q && q.trim()) {
-      window.open(
-        'https://gpwashim.edu.in/?s=' + encodeURIComponent(q.trim()),
-        '_blank'
-      );
+  link.addEventListener('click', function (e) {
+    e.preventDefault(); // stop page jump
+
+    // toggle open/close
+    dropdownItem.classList.toggle('open');
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!dropdownItem.contains(e.target)) {
+      dropdownItem.classList.remove('open');
     }
   });
 })();
+
+/* ── Active nav item underline with smooth animation ── */
+(function () {
+  const navItems = document.querySelectorAll('.nav-item');
+  const navLinks = document.querySelectorAll('.nav-item .nav-link');
+
+  navLinks.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      const parentItem = link.closest('.nav-item');
+
+      // Skip if it's a dropdown toggle – let dropdown open naturally
+      if (parentItem.classList.contains('has-dropdown')) {
+        // Still update active state
+      }
+
+      // Remove active from all items
+      navItems.forEach(function (item) {
+        item.classList.remove('active');
+        // Remove injected underline spans on items that aren't Home
+        const ul = item.querySelector('.nav-underline');
+        if (!ul) return;
+        // animate out
+        ul.style.width = '0';
+      });
+
+      // Add active to clicked item
+      parentItem.classList.add('active');
+
+      // If clicked item has no underline span, inject one
+      let underline = parentItem.querySelector('.nav-underline');
+      if (!underline) {
+        underline = document.createElement('span');
+        underline.classList.add('nav-underline');
+        parentItem.appendChild(underline);
+      }
+
+      // Force a reflow so transition fires
+      void underline.offsetWidth;
+      underline.style.width = 'calc(100% - 24px)';
+    });
+  });
+})();
+
+
+
+
