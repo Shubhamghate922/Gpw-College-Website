@@ -1,5 +1,7 @@
 /* =========================================================
    GOVERNMENT POLYTECHNIC WASHIM — style.css
+   Combined: Page 1 (Header/Nav/Hero/Leadership) +
+             Page 2 (Updates & Announcements)
    Production-Ready Version
    ========================================================= */
 
@@ -922,7 +924,6 @@ button {
   pointer-events: none;
 }
 
-/* Background decorative image */
 .leadership-bg-deco {
   position:       absolute;
   inset:          0;
@@ -932,10 +933,10 @@ button {
 }
 
 .leadership-bg-deco img {
-  width:      100%;
-  height:     100%;
-  object-fit: cover;
-  opacity:    0.07;
+  width:          100%;
+  height:         100%;
+  object-fit:     cover;
+  opacity:        0.07;
   mix-blend-mode: multiply;
 }
 
@@ -1121,11 +1122,11 @@ button {
 }
 
 .card-photo img {
-  width:      100%;
-  height:     100%;
-  object-fit: cover;
+  width:           100%;
+  height:          100%;
+  object-fit:      cover;
   object-position: center top;
-  display:    block;
+  display:         block;
 }
 
 .card-photo-fallback {
@@ -1259,7 +1260,292 @@ button {
 }
 
 /* =========================================================
-   14. RESPONSIVE — TABLET (≤1024px)
+   14. UPDATES & ANNOUNCEMENTS SECTION
+   ========================================================= */
+.updates-section {
+  background: linear-gradient(160deg, #e8e0f5 0%, #ede8fa 50%, #e4eaf8 100%);
+  padding:    60px 24px 70px;
+}
+
+.updates-inner {
+  max-width: 1100px;
+  margin:    0 auto;
+}
+
+/* ── Big section card (lavender bg) ── */
+.section-card {
+  background:    #f0eafa;
+  border-radius: 20px;
+  padding:       28px 28px 32px;
+  box-shadow:    0 4px 24px rgba(76, 0, 151, 0.08);
+}
+
+/* ── Header row ── */
+.section-header {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  margin-bottom:   20px;
+  gap:             12px;
+  flex-wrap:       wrap;
+}
+
+.header-left {
+  display:     flex;
+  align-items: center;
+  gap:         14px;
+}
+
+.megaphone-icon {
+  width:         52px;
+  height:        52px;
+  background:    var(--clr-purple);
+  border-radius: 12px;
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+  flex-shrink:   0;
+  box-shadow:    0 2px 8px rgba(76,0,151,0.25);
+}
+
+.megaphone-icon i {
+  color:     #fff;
+  font-size: 24px;
+  transform: scaleX(-1);
+}
+
+.section-title {
+  font-family:    var(--font-mr);
+  font-size:      2rem;
+  font-weight:    700;
+  color:          #1a1a2e;
+  letter-spacing: 0.3px;
+}
+
+/* ── View All button ── */
+.view-all-btn {
+  display:        inline-flex;
+  align-items:    center;
+  gap:            8px;
+  background:     var(--clr-purple);
+  color:          #fff;
+  text-decoration: none;
+  padding:        10px 20px;
+  border-radius:  50px;
+  font-size:      0.88rem;
+  font-weight:    600;
+  white-space:    nowrap;
+  transition:     background 0.25s, transform 0.2s;
+}
+
+.view-all-btn:hover {
+  background: var(--clr-purple-dark);
+  transform:  translateX(2px);
+}
+
+.view-all-btn i {
+  font-size: 0.75rem;
+}
+
+/* ── News Ticker ── */
+.ticker-wrapper {
+  display:       flex;
+  align-items:   center;
+  gap:           0;
+  background:    #fff;
+  border:        1.5px solid #d4b8f5;
+  border-radius: 10px;
+  overflow:      hidden;
+  margin-bottom: 24px;
+  min-height:    44px;
+}
+
+.badge-new {
+  background:     #e53935;
+  color:          #fff;
+  font-size:      0.78rem;
+  font-weight:    700;
+  padding:        4px 12px;
+  border-radius:  6px;
+  margin:         6px 10px 6px 10px;
+  flex-shrink:    0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.ticker-track {
+  flex:        1;
+  overflow:    hidden;
+  position:    relative;
+  height:      40px;
+  display:     flex;
+  align-items: center;
+}
+
+.ticker-content {
+  display:    inline-block;
+  white-space: nowrap;
+  animation:  ticker-scroll 30s linear infinite;
+  padding-left: 100%;
+}
+
+.ticker-link {
+  color:           #d32f2f;
+  font-size:       0.88rem;
+  font-weight:     500;
+  text-decoration: none;
+  cursor:          pointer;
+}
+
+.ticker-link:hover {
+  color: var(--clr-purple);
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.ticker-wrapper:hover .ticker-content {
+  animation-play-state: paused;
+}
+
+/* ── Info Cards grid ── */
+.info-cards-grid {
+  display:               grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:                   18px;
+}
+
+/* ── Individual info card ── */
+.info-card {
+  background:    #fff;
+  border-radius: 14px;
+  padding:       22px 20px 24px;
+  border:        1.5px solid #e0d4f7;
+  box-shadow:    0 2px 12px rgba(76,0,151,0.06);
+  transition:    box-shadow 0.25s, transform 0.2s, opacity 0.5s, translate 0.5s;
+}
+
+.info-card:hover {
+  box-shadow: 0 6px 22px rgba(76,0,151,0.12);
+  transform:  translateY(-2px);
+}
+
+/* ── Info card header (icon + title) ── */
+.info-card-header {
+  display:       flex;
+  align-items:   center;
+  gap:           14px;
+  margin-bottom: 14px;
+}
+
+.info-card-icon {
+  width:           50px;
+  height:          50px;
+  border-radius:   12px;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  font-size:       22px;
+  flex-shrink:     0;
+}
+
+.info-card-title {
+  font-family:    var(--font-mr);
+  font-size:      1.55rem;
+  font-weight:    700;
+  letter-spacing: 0.3px;
+}
+
+/* Academic – purple */
+.icon-academic  { background: #ede7f6; color: var(--clr-purple); }
+.title-academic { color: #1a1a2e; }
+.divider-academic { border-color: var(--clr-purple); }
+
+/* Administration – blue */
+.icon-admin     { background: #e3f2fd; color: #1565c0; }
+.title-admin    { color: #1565c0; }
+.divider-admin  { border-color: #1565c0; }
+
+/* Resources – green */
+.icon-resources  { background: #e8f5e9; color: #2e7d32; }
+.title-resources { color: #2e7d32; }
+.divider-resources { border-color: #2e7d32; }
+
+/* ── Info card divider ── */
+.info-card-divider {
+  border:        none;
+  border-top:    2px solid;
+  margin-bottom: 14px;
+}
+
+/* ── Link list ── */
+.link-list {
+  list-style:     none;
+  display:        flex;
+  flex-direction: column;
+  gap:            2px;
+}
+
+.card-link {
+  display:         flex;
+  align-items:     center;
+  gap:             10px;
+  text-decoration: none;
+  font-size:       0.875rem;
+  font-weight:     500;
+  padding:         7px 4px;
+  border-radius:   8px;
+  transition:      background 0.18s, padding-left 0.18s;
+}
+
+.card-link:hover {
+  background:   rgba(0,0,0,0.04);
+  padding-left: 10px;
+}
+
+.link-academic  { color: var(--clr-purple); }
+.link-admin     { color: #1565c0; }
+.link-resources { color: #2e7d32; }
+
+.link-icon {
+  font-size:  0.9rem;
+  flex-shrink: 0;
+  width:       18px;
+  text-align:  center;
+  opacity:     0.85;
+}
+
+.card-link span {
+  flex: 1;
+}
+
+.link-arrow {
+  font-size:  0.75rem;
+  opacity:    0.7;
+  transition: transform 0.2s;
+}
+
+.card-link:hover .link-arrow {
+  transform: translateX(3px);
+  opacity:   1;
+}
+
+/* ── Info card entrance animation ── */
+.info-card.card-hidden {
+  opacity:   0;
+  transform: translateY(28px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.info-card.card-visible {
+  opacity:   1 !important;
+  transform: translateY(0) !important;
+}
+
+/* =========================================================
+   15. RESPONSIVE — TABLET (≤1024px)
    ========================================================= */
 @media (max-width: 1024px) {
   .hero          { padding: 0 var(--space-xl); min-height: 80vh; }
@@ -1279,7 +1565,7 @@ button {
 }
 
 /* =========================================================
-   15. RESPONSIVE — MOBILE (≤768px)
+   16. RESPONSIVE — MOBILE (≤768px)
    ========================================================= */
 @media (max-width: 768px) {
 
@@ -1379,9 +1665,9 @@ button {
   }
 
   .dropdown-inner a {
-    color:       rgba(255, 255, 255, 0.85);
+    color:        rgba(255, 255, 255, 0.85);
     border-color: rgba(255, 255, 255, 0.1);
-    font-size:   13px;
+    font-size:    13px;
   }
 
   .dropdown-inner a i {
@@ -1417,6 +1703,24 @@ button {
 
   .slider-arrow { display: none; }
   .slider-dots  { bottom: 16px; }
+
+  /* Updates section responsive */
+  .info-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-card {
+    padding: 20px 16px 24px;
+  }
+
+  .view-all-btn {
+    font-size: 0.8rem;
+    padding:   8px 14px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -1431,7 +1735,17 @@ button {
 }
 
 /* =========================================================
-   16. RESPONSIVE — SMALL MOBILE (≤480px)
+   17. RESPONSIVE — SMALL MOBILE (≤520px)
+   ========================================================= */
+@media (max-width: 520px) {
+  .section-header {
+    flex-direction: column;
+    align-items:    flex-start;
+  }
+}
+
+/* =========================================================
+   18. RESPONSIVE — EXTRA SMALL (≤480px)
    ========================================================= */
 @media (max-width: 480px) {
   .top-contact-item span:last-child { max-width: 140px; }
@@ -1444,10 +1758,11 @@ button {
   .hero            { padding: 50px 14px 70px; }
   .leadership-section { padding: 50px 16px 60px; }
   .leadership-title   { font-size: 26px; }
+  .updates-section    { padding: 40px 12px 50px; }
 }
 
 /* =========================================================
-   17. REDUCED MOTION
+   19. REDUCED MOTION
    ========================================================= */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1463,6 +1778,10 @@ button {
   }
 
   .btn {
+    animation: none;
+  }
+
+  .ticker-content {
     animation: none;
   }
 }
