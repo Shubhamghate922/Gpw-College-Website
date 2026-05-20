@@ -2,7 +2,7 @@
    GOVERNMENT POLYTECHNIC WASHIM — style.css
    Combined: Page 1 (Header/Nav/Hero/Leadership) +
              Page 2 (Updates & Announcements)
-   Production-Ready Version
+   Production-Ready Version — All fixes applied
    ========================================================= */
 
 /* =========================================================
@@ -356,7 +356,9 @@ button {
 }
 
 /* =========================================================
-   7. NAVBAR
+   7. NAVBAR — FIX 1: Desktop overflow fixed
+   Use flexbox with wrap=nowrap + justify-content: space-between
+   so all nav items fit on one row without overflow/cutoff
    ========================================================= */
 .navbar {
   position:   sticky;
@@ -372,39 +374,38 @@ button {
   box-shadow: 0 6px 32px rgba(76, 0, 151, 0.55);
 }
 
-.navbar::-webkit-scrollbar        { height: 3px; }
-.navbar::-webkit-scrollbar-track  { background: transparent; }
-.navbar::-webkit-scrollbar-thumb  {
-  background:    rgba(255, 255, 255, 0.35);
-  border-radius: var(--radius-full);
-}
-
+/* FIX 1: nav-list now uses space-between so items distribute evenly
+   across the full width, no overflow or cutoff on desktop */
 .nav-list {
-  display:     flex;
-  align-items: center;
-  width:       max-content;
-  min-width:   100%;
-  padding:     0 var(--space-md);
-  overflow:    visible;
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  width:           100%;
+  padding:         0 8px;
+  overflow:        visible;
 }
 
 .nav-item {
   position: relative;
-  flex:     0 0 auto;
+  flex:     1;            /* each item takes equal share of the row */
+  min-width: 0;
 }
 
+/* FIX 1: Tighten padding and font-size so all 10 items fit on one line */
 .nav-link {
   display:        flex;
   align-items:    center;
-  gap:            6px;
+  justify-content: center;
+  gap:            4px;
   white-space:    nowrap;
-  padding:        17px 16px;
+  padding:        17px 10px;
   color:          rgba(255, 255, 255, 0.88);
-  font-size:      13px;
+  font-size:      12px;
   font-weight:    500;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
   transition:     all var(--ease-normal);
   position:       relative;
+  width:          100%;
 }
 
 .nav-icon {
@@ -431,11 +432,11 @@ button {
 }
 
 .nav-item.active .nav-underline {
-  width: calc(100% - 20px);
+  width: calc(100% - 16px);
 }
 
 .nav-list:hover .nav-item.active .nav-underline { width: 0; }
-.nav-list:hover .nav-item:hover  .nav-underline { width: calc(100% - 20px); }
+.nav-list:hover .nav-item:hover  .nav-underline { width: calc(100% - 16px); }
 
 /* =========================================================
    8. DROPDOWN
@@ -449,7 +450,7 @@ button {
   position:       absolute;
   top:            calc(100% + 2px);
   left:           0;
-  min-width:      240px;
+  min-width:      220px;
   background:     var(--clr-white);
   border-top:     3px solid var(--clr-purple);
   border-radius:  0 0 var(--radius-md) var(--radius-md);
@@ -906,6 +907,8 @@ button {
 
 /* =========================================================
    13. LEADERSHIP SECTION
+   FIX 2: Proper leaf laurel SVGs
+   FIX 3: Watermark (leadership-bg-deco) REMOVED from HTML
    ========================================================= */
 .leadership-section {
   padding:    80px 40px 90px;
@@ -924,21 +927,7 @@ button {
   pointer-events: none;
 }
 
-.leadership-bg-deco {
-  position:       absolute;
-  inset:          0;
-  z-index:        0;
-  pointer-events: none;
-  overflow:       hidden;
-}
-
-.leadership-bg-deco img {
-  width:          100%;
-  height:         100%;
-  object-fit:     cover;
-  opacity:        0.07;
-  mix-blend-mode: multiply;
-}
+/* FIX 3: .leadership-bg-deco removed — no watermark displayed */
 
 .leadership-header {
   text-align:    center;
@@ -955,14 +944,17 @@ button {
   margin-bottom:   14px;
 }
 
+/* FIX 2: Laurel SVGs sized to match reference Image 4 */
 .laurel {
-  width:       120px;
-  height:      60px;
+  width:       80px;
+  height:      100px;
   flex-shrink: 0;
 }
 
-.laurel-left  { transform: scaleX(-1); }
-.laurel-right { transform: scaleX(1); }
+/* FIX 2: Left laurel is the SVG directly (no scaleX flip needed — 
+   the right laurel has transform="scale(-1,1)" baked into SVG group) */
+.laurel-left  { /* natural orientation */ }
+.laurel-right { /* mirror baked into SVG group  */ }
 
 .leadership-title-wrap {
   flex-shrink: 0;
@@ -1267,7 +1259,7 @@ button {
   padding:    60px 24px 70px;
 }
 
-.updates-inner {
+.updates-wrapper {
   max-width: 1100px;
   margin:    0 auto;
 }
@@ -1297,15 +1289,15 @@ button {
 }
 
 .megaphone-icon {
-  width:         52px;
-  height:        52px;
-  background:    var(--clr-purple);
-  border-radius: 12px;
-  display:       flex;
-  align-items:   center;
+  width:           52px;
+  height:          52px;
+  background:      var(--clr-purple);
+  border-radius:   12px;
+  display:         flex;
+  align-items:     center;
   justify-content: center;
-  flex-shrink:   0;
-  box-shadow:    0 2px 8px rgba(76,0,151,0.25);
+  flex-shrink:     0;
+  box-shadow:      0 2px 8px rgba(76,0,151,0.25);
 }
 
 .megaphone-icon i {
@@ -1324,18 +1316,18 @@ button {
 
 /* ── View All button ── */
 .view-all-btn {
-  display:        inline-flex;
-  align-items:    center;
-  gap:            8px;
-  background:     var(--clr-purple);
-  color:          #fff;
+  display:         inline-flex;
+  align-items:     center;
+  gap:             8px;
+  background:      var(--clr-purple);
+  color:           #fff;
   text-decoration: none;
-  padding:        10px 20px;
-  border-radius:  50px;
-  font-size:      0.88rem;
-  font-weight:    600;
-  white-space:    nowrap;
-  transition:     background 0.25s, transform 0.2s;
+  padding:         10px 20px;
+  border-radius:   50px;
+  font-size:       0.88rem;
+  font-weight:     600;
+  white-space:     nowrap;
+  transition:      background 0.25s, transform 0.2s;
 }
 
 .view-all-btn:hover {
@@ -1383,9 +1375,9 @@ button {
 }
 
 .ticker-content {
-  display:    inline-block;
-  white-space: nowrap;
-  animation:  ticker-scroll 30s linear infinite;
+  display:      inline-block;
+  white-space:  nowrap;
+  animation:    ticker-scroll 30s linear infinite;
   padding-left: 100%;
 }
 
@@ -1424,7 +1416,7 @@ button {
   padding:       22px 20px 24px;
   border:        1.5px solid #e0d4f7;
   box-shadow:    0 2px 12px rgba(76,0,151,0.06);
-  transition:    box-shadow 0.25s, transform 0.2s, opacity 0.5s, translate 0.5s;
+  transition:    box-shadow 0.25s, transform 0.2s;
 }
 
 .info-card:hover {
@@ -1432,52 +1424,58 @@ button {
   transform:  translateY(-2px);
 }
 
-/* ── Info card header (icon + title) ── */
-.info-card-header {
+/* ── FIX 4: Info card header — icon + title side by side (matches Image 5) ── */
+.card-header {
   display:       flex;
   align-items:   center;
-  gap:           14px;
-  margin-bottom: 14px;
+  gap:           12px;
+  margin-bottom: 12px;
 }
 
-.info-card-icon {
-  width:           50px;
-  height:          50px;
-  border-radius:   12px;
+/* Icon box — rounded square with colored bg */
+.card-icon {
+  width:           44px;
+  height:          44px;
+  border-radius:   10px;
   display:         flex;
   align-items:     center;
   justify-content: center;
-  font-size:       22px;
+  font-size:       20px;
   flex-shrink:     0;
 }
 
-.info-card-title {
-  font-family:    var(--font-mr);
-  font-size:      1.55rem;
+/* Title sits right next to the icon */
+.card-title {
+  font-family:    var(--font-en);
+  font-size:      1.15rem;
   font-weight:    700;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
+  line-height:    1.2;
 }
 
 /* Academic – purple */
 .icon-academic  { background: #ede7f6; color: var(--clr-purple); }
-.title-academic { color: #1a1a2e; }
+.title-academic { color: var(--clr-purple); }
 .divider-academic { border-color: var(--clr-purple); }
+.link-academic  { color: var(--clr-purple); }
 
 /* Administration – blue */
 .icon-admin     { background: #e3f2fd; color: #1565c0; }
 .title-admin    { color: #1565c0; }
 .divider-admin  { border-color: #1565c0; }
+.link-admin     { color: #1565c0; }
 
 /* Resources – green */
 .icon-resources  { background: #e8f5e9; color: #2e7d32; }
 .title-resources { color: #2e7d32; }
 .divider-resources { border-color: #2e7d32; }
+.link-resources  { color: #2e7d32; }
 
-/* ── Info card divider ── */
-.info-card-divider {
+/* ── Card divider ── */
+.card-divider {
   border:        none;
   border-top:    2px solid;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 /* ── Link list ── */
@@ -1505,12 +1503,8 @@ button {
   padding-left: 10px;
 }
 
-.link-academic  { color: var(--clr-purple); }
-.link-admin     { color: #1565c0; }
-.link-resources { color: #2e7d32; }
-
 .link-icon {
-  font-size:  0.9rem;
+  font-size:   0.9rem;
   flex-shrink: 0;
   width:       18px;
   text-align:  center;
@@ -1561,7 +1555,7 @@ button {
   .leadership-section { padding: 60px 24px 70px; }
   .leadership-title   { font-size: 34px; }
   .leadership-grid    { gap: 20px; }
-  .laurel             { width: 90px; height: 45px; }
+  .laurel             { width: 60px; height: 75px; }
 }
 
 /* =========================================================
@@ -1612,12 +1606,13 @@ button {
     overflow-y: visible;
   }
 
+  /* Mobile nav: stack vertically */
   .nav-list {
     display:        flex;
     flex-direction: column;
     align-items:    stretch;
+    justify-content: flex-start;
     width:          100%;
-    min-width:      unset;
     padding:        0;
     max-height:     0;
     overflow:       hidden;
@@ -1630,6 +1625,7 @@ button {
 
   .nav-item {
     width:         100%;
+    flex:          none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
@@ -1637,6 +1633,7 @@ button {
     justify-content: flex-start;
     padding:         14px var(--space-md);
     font-size:       13.5px;
+    width:           100%;
   }
 
   .nav-underline { display: none; }
