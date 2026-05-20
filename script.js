@@ -2,7 +2,7 @@
    GOVERNMENT POLYTECHNIC WASHIM — script.js
    Combined: Page 1 (Header/Nav/Hero/Leadership) +
              Page 2 (Updates & Announcements Ticker/Cards)
-   Production-Ready Version
+   Production-Ready Version — All fixes applied
    ========================================================= */
 
 'use strict';
@@ -363,7 +363,6 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =========================================================
      9. BUTTON RIPPLE EFFECT
   ========================================================= */
-  // Inject ripple keyframe once
   (function injectRippleStyle() {
     if (document.getElementById('ripple-style')) return;
     const style = document.createElement('style');
@@ -485,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Scale duration to text length for consistent reading speed
     const textLength = tickerContent.scrollWidth;
-    const duration   = Math.max(20, textLength / 60); // ~60px/s
+    const duration   = Math.max(20, textLength / 60);
 
     [tickerContent, clone].forEach(el => {
       el.style.animationDuration = `${duration}s`;
@@ -524,7 +523,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
     } else {
-      // Fallback: show all cards immediately
       infoCards.forEach(card => card.classList.add('card-visible'));
     }
   }
